@@ -1,58 +1,536 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Demo</title>
-    <style>
-        h1 {
-            color:aqua ;
-        }
-        h2  {
-            color:rgb(21, 192, 35);
-            font-family:'Courier New', Courier, monospace
-        }
-       a {
-            color:maroon
-        text-decoration:  none;
-            }
-                             
-    </style>
-    <link rel="stylesheet" href="style.css">
-    </head>
-<body>
-    <h1>hello</h1>
-    <h2>hello</h2>
-    <h3>hello</h3>
-    <h4>hello</h4>
-    <p>Paragraph</p>
-    <a href="https://youtube.com">youtube</a>
-    <image src="s://share.google/images/d5JkEIWkUnF7TWwhx"></image>
-    <ol>
-        <li>list 1</li>
-        <li>list 2</li>
-        <li>list 3</li>
-    </ul>
-    </ol>
-     <table>
-        <th>lyta123</td>
-            <teble>
-                <tr>
-                    <th>noone</th>
-                </tr>
-                <th>hannvanm</td>
-            </teble>
-        <th>menghuy</td>
-        <th>menghourng</td>
-     </table>
-    <tr>
-        <td>header 1</td>
-        <td>header 2</td>
-    </tr>
-</teble>
-   <form action=  submit.php metod="post">
-    <lable>Name</lable>
-    <input type="text">
-    <input  type="submit">
-   </form>
-   <body>
-    image: scr  
-   </body>
+<div class="left_frame" id="left_frame" style="overflow: auto;">
+		    	<div class="left_nav">
+		        	<div class="nav_title">
+						<img src="../content/images/default_user.png">
+						<label>Admin001<br><a href="#" onclick="getBalance()" id="balance" style="color:#da624a;text-decoration:none"> 593.76</a> USD</label>
+		        	</div>
+                                            <li class="menu-list">
+                            <a style="cursor:pointer;" onclick="show(a0)" title="User Manual" class=""><i class="fa fa-rss-square"></i> <span>0. User Manual</span></a>
+                            <ul id="a0" style="display: block;" class="">
+                                <li><a target="right_frame" href="website_edit_lang.php" style="margin-top:0" title="Edit Desktop Member Site Language" class=""><i class="fa fa-angle-double-right"></i> <span>0.1 Edit Desktop Member Site Language</span></a></li>                                <li><a target="right_frame" href="h5_edit_lang.php" style="margin-top:0" title="Edit H5 Member Site Language" class=""><i class="fa fa-angle-double-right"></i> <span>0.2 Edit H5 Member Site Language</span></a></li>                            </ul>
+                        </li>
+                    		        						<li class="menu-list">
+						<a style="cursor:pointer;" onclick="show(a1)" title="Accounts" class=""><i class="fa fa-user"></i> <span>1. Accounts</span></a><span id="account" style="position:relative;float:right;margin-top:-25px;left:-10px;"> 0</span>			        	<ul id="a1" style="display: block;" class="">
+			                <li><a target="right_frame" href="accounts/website_edit.php?id=17479&amp;domain=&amp;agdomain=&amp;dir=&amp;username=Admin001&amp;fullname=AD001" style="margin-top:0;" title="Edit" class="">1.1 Edit</a></li>
+                            <li><a style="margin-top:0;display:block;margin-right:18px;" onclick="StopVoiceAccount()" target="right_frame" href="accounts/member_list.php?id=17479" title="Member" class="">1.2 Member<span id="new_reg_mem" style="position:relative;float:right;"> 0</span></a></li>
+				            <li style="display:none"><a onclick="StopVoiceAccount()" target="right_frame" href="accounts/member_list_invalid.php?id=17479" title="Old Member" class="">1.2.1 Old Member</a></li>
+							<li><a target="right_frame" href="accounts/member_list_free_wallet.php" title="Member (Free Wallet)" class="">1.2.2 Member (Free Wallet)</a></li>
+				                                        					        			                <li><a target="right_frame" href="accounts/agent_list.php?id=17479" title="Senior" class="">1.3 Senior</a></li>			                					        <li><a target="right_frame" href="accounts/agent_logs_dw_me.php?id=17479" title="Downline Deposit Withdraw" class="">1.3.1 Downline Deposit Withdraw</a></li>					        <li><a target="right_frame" href="accounts/reports/indexreport.php" title="Downline Sharing Totally Report" class="">1.3.2 Downline Sharing Totally Report</a></li>			                <li><a target="right_frame" href="accounts/manual_deposit_withdraw.php" title="Manual Balance Log" class="">1.4 Manual Balance Log</a></li>
+			                <li><a target="right_frame" href="accounts/manual_change_bonus.php" title="Manual Bonus Log" class="">1.5 Manual Bonus Log</a></li>
+											            <li><a target="right_frame" href="accounts/manual_depo_with.php" title="Manual Withdraw/Deposit" class="">1.6 Manual Withdraw/Deposit</a></li>
+							                            		<li style="display:none"><a target="right_frame" href="accounts/manual_depo_with2.php" title="Move Member More" class="">1.6.2 Move Member More</a></li>
+			                <li style="display:none"><a target="right_frame" href="accounts/manual_depo_with3.php" title="Move Affiliate Member" class="">1.6.3 Move Affiliate Member</a></li>
+																						<li><a target="right_frame" href="accounts/scr888_list.php" title="SCR888 Member" class="">1.8 SCR888 Member</a></li>
+								<li><a target="right_frame" href="accounts/mega_list.php" title="SCR888 Member" class="">1.8.1 MEGA Member</a></li>
+								<li><a target="right_frame" href="accounts/pussy_list.php" title="PUSSY Member" class="">1.8.2 PUSSY Member</a></li>
+							                            			            </ul>
+			        </li>
+		            <script>
+function getRewReg(){
+	$.ajax({
+			type: "POST",
+			url: "accounts/getamount.php",
+			data: "web_id=&idc=1",
+			success: function(msg){
+		   		document.getElementById("account").innerHTML=msg; 
+				document.getElementById("new_reg_mem").innerHTML=msg;		 
+		   		if(parseInt(msg)>0){
+					  $("#jplayer0").jPlayer({ 
+		    		        ready: function () { 
+		    		            $(this).jPlayer("setMedia", { 
+					  		    		                mp3:  "mp3/Ring1.mp3",
+                                    		    		            }).jPlayer("play"); // auto play 
+		    		        }, 
+		    		        ended: function (event) {}, 
+		    		        supplied: "mp3" 
+		    		    })
+			   		}
+		   		else{
+		   			$("#jplayer0").jPlayer("destroy");
+		   		}
+		  }})
+	}
+			setInterval("getRewReg()",120000);
+			function StopVoiceAccount(){
+		$("#jplayer0").jPlayer("destroy");
+	}
+</script>
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a2)" title="Announcement"><i class="fa fa-bullhorn"></i> <span>2. Announcement</span></a>
+			            <ul id="a2" style="display:none;">
+			                <li style="display:none"><a target="right_frame" href="announcement/announcements.php" style="margin-top:0" title="Announcement">2.1 Announcement</a></li>
+			                <li style="display:none"><a target="right_frame" href="announcement/banners.php" style="margin-top:0" title="Banner">2.2 Banner</a></li>
+			                <li style="display:none"><a target="right_frame" href="announcement/seos.php" style="margin-top:0" title="SEOS">2.3 SEOS</a></li>
+                                                        <li style="display:none"><a target="right_frame" href="announcement/webstie_contacts.php" style="margin-top:0" title="SEOS">2.3.1 Website Contacts</a></li>
+                            			                <li style="display:none"><a target="right_frame" href="announcement/livechat.php" style="margin-top:0" title="Live Chat">2.4 Live Chat</a></li>
+			                <li style="display:none"><a target="right_frame" href="announcement/news.php" style="margin-top:0" title="News">2.5 News</a></li>
+			                <li style="display:none"><a target="right_frame" href="announcement/qrcode.php" style="margin-top:0" title="QR code">2.6 QR code</a></li>
+			                <li style="display:none"><a target="right_frame" href="announcement/notification.php" style="margin-top:0" title="Notification">2.7 Notification</a></li>
+							<li style="display:none"><a target="right_frame" href="announcement/tel_bot_conf.php" style="margin-top:0" title="telegram bot config">2.8 Telegram Bot Config</a></li>
+							<li style="display:none"><a target="right_frame" href="announcement/webapp_bot_conf.php" style="margin-top:0" title="Webapp bot config">2.8.1 Webapp Bot Config</a></li>
+							<li style="display:none"><a target="right_frame" href="announcement/fbp_config.php" style="margin-top:0" title="Facebook pixcel config">2.8.2 Facebook pixcel config</a></li>
+			            </ul>
+			        </li>
+		            		            
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a4)" title="Banks"><i class="fa fa-money-bill"></i> <span>3. Banks</span></a>
+			        	<ul id="a4" style="display:none;">
+			        				        		<li style="display:none"><a target="right_frame" href="gamesettings/currency.php" style="margin-top:0" title="Currency">3.1 Currency</a></li>
+									                <li style="display:none"><a target="right_frame" href="banks/banks.php" style="margin-top:0" title="Banks">3.2 Banks</a></li>
+					        			                <li style="display:none"><a target="right_frame" href="banks/bank_categorys.php" title="Bank Category">3.3 Bank Category</a></li>
+			                <li style="display:none"><a target="right_frame" href="banks/bank_accounts.php" title="Bank Account">3.4 Bank Account</a></li>
+					        			                <li style="display:none"><a target="right_frame" href="banks/bank_book.php" title="Bank Book">3.5 Bank Book</a></li>
+			                <li style="display:none"><a target="right_frame" href="banks/payment_cards.php" title="payment cards">3.6 payment cards</a></li>
+			                
+			            			            	<li style="display:none"><a target="right_frame" href="banks/bank_records.php" style="margin-top:0" title="Bank Record">3.7 Bank Record</a></li>
+			            	<li style="display:none"><a target="right_frame" href="banks/bank_records2.php" style="margin-top:0" title="Bank Record(old)">3.7.1 Bank Record(old)</a></li>
+			            	<li><a target="right_frame" href="banks/bank_records_count.php" style="margin-top:0" title="Bank Record Logs">3.7.2 Bank Record Logs</a></li>
+					    				            <li style="display:none"><a target="right_frame" href="banks/payment_withdraw.php" style="margin-top:0" title="Third party payment">3.8 Third party payment(Online)</a></li>
+								            					   					            </ul>
+			        </li>
+		            		            
+<script>
+function getAmount(){
+	$.ajax({
+			type: "POST",
+			url: "getamount.php",
+			data: "web_id=&idc=1",
+			success: function(msg){
+								var arr= msg.split("#");
+				if(document.getElementById("deposit"))
+				var deposit_old  = document.getElementById("deposit").innerHTML;
+
+				if(document.getElementById("withdraw"))
+				var withdraw_old = document.getElementById("withdraw").innerHTML;
+
+				if(document.getElementById("deposit"))
+		   		document.getElementById("deposit").innerHTML=arr[0];
+
+				if(document.getElementById("withdraw"))
+		   		document.getElementById("withdraw").innerHTML=arr[1];
+
+				if(document.getElementById("new_deposit"))
+		   		document.getElementById("new_deposit").innerHTML=arr[0];
+
+				if(document.getElementById("new_withdraw"))
+		   		document.getElementById("new_withdraw").innerHTML=arr[1];
+
+				if(document.getElementById("new_withdraw_free"))
+		   		document.getElementById("new_withdraw_free").innerHTML=arr[6];
+
+				if(document.getElementById("new_promo_free")){
+					var free_count = document.getElementById("new_promo_free").innerHTML;
+					if(free_count==""){
+						free_count=0;
+					}
+					document.getElementById("free_count").innerHTML=parseInt(arr[6]) + parseInt(free_count);
+				}else{
+					if(document.getElementById("free_count")){
+						document.getElementById("free_count").innerHTML=parseInt(arr[6]);
+					}
+				}
+
+		                if(document.getElementById("withdraw_bonus"))
+		   		document.getElementById("withdraw_bonus").innerHTML=arr[2];
+
+                if(document.getElementById("transfer_bonus"))
+			    document.getElementById("transfer_bonus").innerHTML=arr[3];
+
+                if(document.getElementById("deposit_bonus"))
+			    document.getElementById("deposit_bonus").innerHTML=arr[4];
+
+                                document.getElementById("refer_bonus").innerHTML=arr[5];
+                
+                if(document.getElementById("bonus"))
+			    document.getElementById("bonus").innerHTML=parseInt(arr[2])+parseInt(arr[3])+parseInt(arr[4]);
+		   	
+		  
+		  		var isjPlayer = true;
+				var num = 0;
+		   		if(parseInt(arr[0])>0 || parseInt(arr[1])>0  || parseInt(arr[2])+parseInt(arr[3])+parseInt(arr[4]) > 0 || parseInt(arr[6])>0){
+					if(parseInt(deposit_old)<parseInt(arr[0]) || parseInt(withdraw_old)<parseInt(arr[1]) || parseInt(arr[6])>0){
+				   		$("#jplayer").jPlayer("destroy");
+						$("#jplayer1").jPlayer("destroy");
+			   		}else{
+											}
+						if(isjPlayer){
+													$("#jplayer").jPlayer({ 
+								ready: function () { 
+									$(this).jPlayer("setMedia", {
+																				mp3: "mp3/Ring1.mp3",
+																			}).jPlayer("play"); // auto play 
+								}, 
+								ended: function (event) { 
+																		}, 
+								supplied: "mp3" 
+							})
+													}
+			   		}
+		   		else{
+		   			$("#jplayer").jPlayer("destroy");
+		   		}
+		  }})
+	}
+        setInterval("getAmount()",30000);
+    	
+	function StopDWBAccount(){
+		$("#jplayer").jPlayer("destroy");
+	}
+</script>
+		
+										<li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a5)" title="Deposit" class=""><i class="fa fa-exchange-alt"></i><span>4. Deposit</span></a><span id="deposit" style="position:relative;float:right;margin-top:-25px;left:-10px;"> 0</span>
+			            <ul id="a5" style="display: block;" class="">
+																					<li><a target="right_frame" href="deposit/deposit.php" style="margin-top:0;display:block;margin-right:18px;" title="Deposit" class="">4.1 Deposit<span id="new_deposit" style="position:relative;float:right;"> 0</span></a></li>
+														<li><a target="right_frame" href="deposit/deposit_logs.php" style="margin-top:0" title="Deposit Logs" class="">4.2 Deposit Logs</a></li>
+														<li><a target="right_frame" href="deposit/deposit_report.php" style="margin-top:0" title="Deposit Report" class="">4.3 Deposit Report</a></li>
+							<li><a target="right_frame" href="deposit/deposit_report_old.php" style="margin-top:0" title="Deposit Report (old)" class="">4.4 Deposit Report (old)</a></li>
+                              
+				                         <li style="display:none"><a target="right_frame" href="deposit/deposit_affiliate_logs.php" style="margin-top:0" title="Deposit Logs" class="">4.6 Affiliate Deposit Logs</a></li>
+			            </ul>
+			        </li>
+		            		            
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a6)" title="Withdraw" class=""><i class="fa fa-exchange-alt"></i><span>5. Withdraw</span></a><span id="withdraw" style="position:relative;float:right;margin-top:-25px;left:-10px;">0</span>
+			            <ul id="a6" style="display: block;" class="">
+				            							<li><a onclick="StopDWBAccount()" target="right_frame" href="withdraw/withdraw.php" style="margin-top:0;display:block;margin-right:18px;" title="Withdraw" class="">5.1 Withdraw<span id="new_withdraw" style="position:relative;float:right;">0</span></a></li>
+							
+			                <li><a target="right_frame" href="withdraw/withdraw_logs.php" style="margin-top:0" title="Withdraw Logs" class="">5.2 Withdraw Logs</a></li>
+			           					           					                <li><a target="right_frame" href="withdraw/withdraw_report.php" style="margin-top:0" title="Withdraw Report" class="">5.3 Withdraw Report</a></li>
+			                <li><a target="right_frame" href="withdraw/withdraw_report_old.php" style="margin-top:0" title="Withdraw Report (old)" class="">5.4 Withdraw Report (old)</a></li>
+                            <li><a target="right_frame" href="withdraw/withdraw_turnover.php" style="margin-top:0" title="Withdraw Checking Turnover" class="">5.5 Withdraw Checking Turnover</a></li>
+                            <li style="display:none"><a target="right_frame" href="withdraw/withdraw_turnover2.php" style="margin-top:0" title="Withdraw Checking Turnover" class="">5.5.1 Withdraw Checking Turnover</a></li>
+                                                        <li style="display:none"><a target="right_frame" href="withdraw/withdraw_agent.php" style="margin-top:0" class="">5.6 Affiliate Withdraw</a></li>
+                            <li style="display:none"><a target="right_frame" href="withdraw/withdraw_report_agent.php" style="margin-top:0" class="">5.7 Affiliate Withdraw Report</a></li>
+                        </ul>
+		            </li>
+		            		            
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a7)" title="Referral Bonus"><i class="fa fa-users"></i><span>6. Referral Bonus</span></a><span id="bonus" style="position:relative;float:right; left:-10px;margin-top:-25px;">0</span>
+			            <ul id="a7" style="display:none;">
+			                <li><a onclick="StopDWBAccount()" target="right_frame" href="bonus/deposit_bonus.php" style="margin-top:0;display:block;margin-right:18px;" title="Referral Deposit Bonus">6.1 Referral Deposit Bonus<span id="deposit_bonus" style="position:relative;float:right;">0</span></a></li>
+			                <li><a onclick="StopDWBAccount()" target="right_frame" href="bonus/withdraw_bonus.php" style="margin-top:0;display:block;margin-right:18px;" title="Referral Withdraw Bonus">6.2 Referral Withdraw Bonus<span id="withdraw_bonus" style="position:relative;float:right;">0</span></a></li>
+			                <li><a onclick="StopDWBAccount()" target="right_frame" href="bonus/transfer_bonus.php" style="margin-top:0;display:block;margin-right:18px;" title="Referral Transfer Bonus">6.3 Referral Transfer Bonus<span id="transfer_bonus" style="position:relative;float:right;">0</span></a></li>
+			                <li><a target="right_frame" href="bonus/bonus_report.php" style="margin-top:0" title="Referral Bonus Report">6.4 Referral Bonus Report</a></li>
+					                                    <li><a target="right_frame" href="bonus/register_bonus.php" style="margin-top:0;display:block;margin-right:18px;" title="New Member Bonus">6.6 New Member Bonus<span id="refer_bonus" style="position:relative;float:right;">0</span></a></li>
+                            <li><a target="right_frame" href="bonus/register_bonus_report.php" style="margin-top:0" title="New Member Bonus Report">6.7 New Member Bonus Report</a></li>
+			            </ul>
+		            </li>
+		            		            
+		            
+		            		            <script>
+					function getBonusAmount(){
+						$.ajax({
+								type: "POST",
+								url: "gift/getamount.php",
+								data: "web_id=",
+								success: function(msg){
+							    	//document.getElementById("gift").innerHTML=msg;
+							    	//document.getElementById("gift_reports").innerHTML=msg;
+                                    var arr= msg.split("#");
+                                    if(document.getElementById("gift"))document.getElementById("gift").innerHTML=arr[2];
+                                    if(document.getElementById("gift_reports"))document.getElementById("gift_reports").innerHTML=arr[0];
+                                    if(document.getElementById("gift_dep"))document.getElementById("gift_dep").innerHTML=arr[3];
+                                    if(document.getElementById("gift_transfer"))document.getElementById("gift_transfer").innerHTML=arr[1];
+
+                                    var total = 0;
+                                    for (var i = 0; i < arr.length; i++) {
+                                        var v = parseInt(arr[i], 10);
+                                        if (!isNaN(v)) total += v;
+                                    }
+                                	if(total>0){
+                                            $("#jplayer_gift").jPlayer("destroy");
+                                          $("#jplayer_gift").jPlayer({ 
+                                		        ready: function () { 
+                                		            $(this).jPlayer("setMedia", { 
+																												mp3: "mp3/Ring.mp3",
+														                                		            }).jPlayer("play"); // auto play 
+							    		        }, 
+							    		        ended: function (event) { 
+							    		        			    		        
+							      		            }, 
+							    		        supplied: "mp3" 
+							    		    })
+                                   		}
+                                   		else{
+                                            $("#jplayer_gift").jPlayer("destroy");
+                                   		}
+							  }})
+						}
+					
+													setInterval("getBonusAmount()",30000);
+						
+						function StopGiftAccount(){
+							$("#jplayer_gift").jPlayer("destroy");
+						}
+					</script>
+					<li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a8)" title="Gift" class=""><i class="fa fa-gift"></i> <span>7. Gift</span></a><span id="gift" style="position:relative;float:right; left:-10px;margin-top:-25px;">0</span>
+			            <ul id="a8" style="display: block;" class="">
+			                <li><a target="right_frame" href="gift/gift.php" style="margin-top:0" title="Gifts Management" class="">7.1 Gifts Management</a></li>
+			                <li><a target="right_frame" href="gift/pointssettings/pointssettings.php" style="margin-top:0" title="Redeem Settings" class="">7.2 Redeem Settings</a></li>
+			                <li><a onclick="StopGiftAccount()" target="right_frame" href="gift/gift_member_request.php" style="margin-top:0;display:block;margin-right:18px;" title="Application Processing" class="">7.3 Application Processing<span id="gift_reports" style="position:relative;float:right;"> 0</span></a></li>
+			            	<li><a target="right_frame" href="gift/gift_reports.php" style="margin-top:0" title="Gifts Report" class="">7.4 Gifts Report</a></li>
+			            	<li><a target="right_frame" href="gift/turntable_reports.php" style="margin-top:0" title="Turntable Report" class="">7.5 Turntable Report</a></li>
+                            <li><a target="right_frame" href="gift/turntable_gift.php" style="margin-top:0;display:block;margin-right:18px;" title="Turntable" class="">7.5.1 Turntable (Deposit)<span id="gift_dep" style="position:relative;float:right;">0</span></a></li>
+                            <li><a target="right_frame" href="gift/turntable_gift_reports.php" style="margin-top:0" title="Turntable Report" class="">7.5.2 Turntable Report (Deposit)</a></li>
+			                <li><a target="right_frame" href="gift/turntable_list.php" style="margin-top:0" title="Turntable List" class="">7.5.3 Turntable List</a></li>
+							<li><a target="right_frame" href="gift/turntable_register_gift.php" style="margin-top:0" title="Turntable (Register)" class="">7.5.4 Turntable (Register)</a></li>
+							<li><a target="right_frame" href="gift/turntable_register_gift_reports.php" style="margin-top:0" title="Turntable Report (Register)" class="">7.5.5 Turntable Report (Register)</a></li>
+							                            <li><a target="right_frame" href="gift/point_list.php" style="margin-top:0" title="Point List" class="">7.6 Point List</a></li>
+					        			            </ul>
+			        </li>
+		            		            
+		            <script>
+function getAmountPromotion(){
+	$.ajax({
+			type: "POST",
+			url: "promotion/getamount.php",
+			data: "web_id=",
+			success: function(msg){
+                var arr= msg.split("#");
+		   		document.getElementById("promotion").innerHTML=parseInt(arr[0])+parseInt(arr[1]);
+				document.getElementById("new_promo").innerHTML=arr[0];
+                document.getElementById("new_achi").innerHTML=arr[1];
+                if(document.getElementById("new_cashback"))document.getElementById("new_cashback").innerHTML=arr[2];
+				if(document.getElementById("new_promo_free"))document.getElementById("new_promo_free").innerHTML=arr[3];
+				if(document.getElementById("new_withdraw_free")){
+					var free_count = document.getElementById("new_withdraw_free").innerHTML;
+					if(free_count==""){
+						free_count=0;
+					}
+					document.getElementById("free_count").innerHTML=parseInt(arr[3]) + parseInt(free_count);
+				}else{
+					if(document.getElementById("free_count")){
+						document.getElementById("free_count").innerHTML=parseInt(arr[3]);
+					}
+				}
+		   		
+				var total = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    var v = parseInt(arr[i], 10);
+                    if (!isNaN(v)) total += v;
+                }
+                                	
+					if(total>0){
+					  $("#jplayer_prom").jPlayer({ 
+		    		        ready: function () { 
+		    		            $(this).jPlayer("setMedia", {
+                                    		    		                mp3: "mp3/Ring1.mp3",
+                                    		    		            }).jPlayer("play"); // auto play 
+		    		        }, 
+		    		        ended: function (event) { 
+		    		        			    		        
+		      		            }, 
+		    		        supplied: "mp3" 
+		    		    })
+			   		}
+		   		else{
+		   			$("#jplayer_prom").jPlayer("destroy");
+		   		}
+		  }})
+	}
+setInterval("getAmountPromotion()",60000);
+	function StopPromotionAccount(){
+		$("#jplayer_prom").jPlayer("destroy");
+	}
+</script>
+					<li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a9)" title="Promotion" class="mm-active"><i class="fa fa-gem"></i> <span>8. Promotion</span></a><span id="promotion" style="position:relative;float:right; left:-10px;margin-top:-25px;">1</span>
+			            <ul id="a9" style="display: block;" class="mm-active">
+			                <li><a onclick="StopPromotionAccount()" target="right_frame" href="promotion/promotion.php" style="margin-top:0;display:block;margin-right:18px;" title="Promotion" class="mm-active">8.1 Promotion<span id="new_promo" style="position:relative;float:right;"> 1</span></a></li>
+			                <li><a target="right_frame" href="promotion/promotion_logs.php" style="margin-top:0" title="Promotion Logs" class="mm-active">8.2 Promotion Logs</a></li>
+			                <li><a target="right_frame" href="promotion/promotion_report.php" style="margin-top:0" title="Promotion Report" class="mm-active">8.3 Promotion Report</a></li>
+			            	<li><a target="right_frame" href="promotion/promotions_desgin.php" style="margin-top:0" title="Promotion Design" class="mm-active">8.4 Promotion Design</a></li>
+			            	<li><a target="right_frame" href="promotion/auto/promotion_auto.php" style="margin-top:0" title="Turnover Auto Promotion" class="mm-active">8.5 Turnover Auto Promotion</a></li>
+			            	<li><a target="right_frame" href="promotion/auto/promotion_auto2.php" style="margin-top:0" title="Cash Back Auto Promotion" class="mm-active">8.6 Cash Back Auto Promotion</a></li>
+			            						        <li><a target="right_frame" href="promotion/auto/offline_promotion.php" style="margin-top:0" title="Manual Promotion" class="mm-active">8.7 Manual Promotion</a></li>
+							<li><a target="right_frame" href="promotion/promotion_finish.php" style="margin-top:0" title="Finish Promotion" class="mm-active">8.8 Finish Promotion</a></li>
+                            <li><a target="right_frame" style="margin-top:0" href="promotion/achievement_report.php" title="Achievement Report" class="mm-active">8.9 Achievement Report</a></li>
+				            <li style="display:none"><a target="right_frame" style="margin-top:0;display:block;margin-right:18px;" href="achievement/achievement.php" title="Achievement" class="mm-active">8.10 Achievement<span id="new_achi" style="position:relative;float:right;">0</span></a></li>
+                            <!--<li  ><a target="right_frame" style="margin-top:0;display:block;margin-right:18px;"  href="promotion/member_turnover_cashback.php" title="">8.11 <span id="new_cashback" style="position:relative;float:right;"></span></a></li>
+                            <li  ><a target="right_frame" style="margin-top:0;display:block;margin-right:18px;"  href="promotion/turnover_cashback_report.php" title="">8.12 </a></li>-->
+                        </ul>
+				   	</li>
+		            		            
+		            					<script>
+					function getAmountAffiliate(){
+						$.ajax({
+								type: "POST",
+								url: "affiliate/getamount.php",
+								data: "web_id=",
+								success: function(msg){
+							   		document.getElementById("affiliate").innerHTML=msg;
+								document.getElementById("new_affil").innerHTML=msg;
+							   		 
+							   		if(parseInt(msg)>0){
+										  $("#jplayer_affi").jPlayer({ 
+							    		        ready: function () { 
+							    		            $(this).jPlayer("setMedia", { 
+							    		                mp3: "mp3/Ring1.mp3", 
+							    		            }).jPlayer("play"); // auto play 
+							    		        }, 
+							    		        ended: function (event) { 
+							    		        			    		        
+							      		            }, 
+							    		        supplied: "mp3" 
+							    		    })
+								   		}
+							   		else{
+							   			$("#jplayer_affi").jPlayer("destroy");
+							   		}
+							  }})
+						}
+					
+						setInterval("getAmountAffiliate()",300000);
+
+						function StopAffiliateAccount(){
+							$("#jplayer_affi").jPlayer("destroy");
+						}
+					</script>
+					
+					<li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a10)" title="Affiliate"><i class="fa fa-handshake"></i> <span>9. Affiliate</span></a><span id="affiliate" style="position:relative;float:right; left:-10px;margin-top:-25px;"> 4</span>
+			            <ul id="a10" style="display:none;">
+			               	<li style="display:none"><a onclick="StopAffiliateAccount()" target="right_frame" href="affiliate/affiliate.php" style="margin-top:0;display:block;margin-right:18px;" title="Affiliate">9.1 Affiliate<span id="new_affil" style="position:relative;float:right;"> 4</span></a></li>
+					        <li style="display:none"><a target="right_frame" href="affiliate/reports/indexreport.php" style="margin-top:0" title="Affiliate Report">9.1.1 Affiliate Report</a></li>
+                            <li style="display:none"><a target="right_frame" href="affiliate/reports/indexreport2.php" style="margin-top:0" title="Affiliate Report">9.1.2 Affiliate Report</a></li>
+                            							                            <li style="display:none"><a target="right_frame" href="affiliate/affiliate_list.php" style="margin-top:0" title="Affiliate List">9.2 Affiliate List</a></li>
+			               	<li style="display:none"><a target="right_frame" href="affiliate/affiliate_details.php" style="margin-top:0" title="Affiliate">9.3 Affiliate Detail</a></li>
+			               	<li style="display:none"><a target="right_frame" href="affiliate/affiliate_setting.php" style="margin-top:0" title="Affiliate Setting">9.4 Affiliate Setting</a></li>
+														<li style="display:none"><a target="right_frame" href="affiliate/affiliate_domain.php" style="margin-top:0" title="Affiliate">9.5 Affiliate Domain</a></li>
+			                <li style="display:none"><a target="right_frame" href="affiliate/affiliate_logs.php" style="margin-top:0" title="Logs">9.6 Logs</a></li>
+                            <li><a target="right_frame" href="affiliate/affiliate_register2.php" style="margin-top:0" title="Affiliate Register">9.7 Affiliate Register</a></li>
+							                            		                        	   </ul>
+			        </li>
+		            		            
+		                                    <script>
+                            function getKycAmount(){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "gamesettings/getamount.php",
+                                    data: "web_id=",
+                                    success: function(msg){
+                                                                                document.getElementById("kyc").innerHTML=msg;
+                                        document.getElementById("kyc_reports").innerHTML=msg;
+                                                                                if(parseInt(msg)>0){
+                                            $("#jplayer_kyc").jPlayer({
+                                                ready: function () {
+                                                    $(this).jPlayer("setMedia", {
+																												mp3: "mp3/Ring.mp3",
+														                                                    }).jPlayer("play"); // auto play
+                                                },
+                                                ended: function (event) {
+                                                                                                    },
+                                                supplied: "mp3"
+                                            })
+                                        }
+                                        else{
+                                            $("#jplayer_kyc").jPlayer("destroy");
+                                        }
+                                    }})
+                            }
+
+                            setInterval("getKycAmount()",20000);
+                            function StopKycAccount(){
+                                $("#jplayer_kyc").jPlayer("destroy");
+                            }
+                        </script>
+		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a11)" title="Game Settings"><i class="fa fa-cog"></i> <span>10. Game Settings</span></a><span id="kyc" style="position:relative;float:right; left:-10px;margin-top:-25px;"> 0</span>
+			        	<ul id="a11" style="display:none;">
+			        		<li style="display:none"><a target="right_frame" href="announcement/promotions.php" style="margin-top:0" title="Promotion Settings">10.1 Promotion Settings</a></li>
+										        		<li><a target="right_frame" href="gamesettings/game_results.php" title="Results">10.2 Results</a></li>
+                                                        <li><a target="right_frame" href="gamesettings/game_settings.php" title="Settings">10.3 Settings</a></li>
+			                <li><a target="right_frame" href="game/game_status.php" style="margin-top:0" title="Status">10.4 Status</a></li>
+			                <li style="display:none"><a target="right_frame" href="gamesettings/special_settings.php" title="Special Settings">10.5 Special Settings</a></li>
+					        <li><a target="right_frame" href="gamesettings/black_list.php" title="Black List Setting">10.6 Black List Setting</a></li>
+                            <li style="display:none"><a target="right_frame" href="gamesettings/black_list_web.php" title="Black List Setting">10.6.1 IP Black List Setting</a></li>
+			                <li style="display:none"><a target="right_frame" href="gamesettings/prediction.php" title="Lottery Prediction">10.7 Lottery Prediction</a></li>
+                            <li style="display:none"><a onclick="StopKycAccount()" target="right_frame" href="gamesettings/verify_warn_member.php" style="margin-top:0;display:block;margin-right:18px;" title="Verify Warn Member">10.8 Verify Warn Member <span id="kyc_reports" style="position:relative;float:right;"> 0</span></a></li>
+					                                	<li><a target="right_frame" href="achievement/achievement_set.php">10.10 Achievement Settings</a></li>
+					                                    <li style="display:none"><a target="right_frame" href="gamesettings/agent_setting.php" title="Commission Setting">10.11 Commission Setting</a></li>
+			            </ul>
+			        </li>
+		            					
+										<li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a12)" title="Reports"><i class="fa fa-chart-line"></i> <span>11. Reports</span></a>
+			            <ul id="a12" style="display: block;">
+			            	<li><a target="right_frame" href="reports/stcontrol/reporthistory.php" style="margin-top:0" title="Games History Reports">11.1 Games History Reports</a></li>
+			          	    <li><a target="right_frame" href="reports/total_win_loss.php" style="margin-top:0" title="Total WinLoss">11.2 Total WinLoss</a></li>
+					        <li><a target="right_frame" href="reports/member_winloss_month.php" style="margin-top:0" title="Total WinLoss Member (Month)">11.2.2 Total WinLoss (Month)</a></li>
+                            <li style="display:none"><a target="right_frame" href="reports/member_winloss_byday_top2.php" style="margin-top:0" title="Total WinLoss Member (Top100)">11.2.3 Total WinLoss (TOP)</a></li>
+                            <li style="display:none"><a target="right_frame" href="reports/member_winloss_byday_summer.php" style="margin-top:0" title="Total WinLoss (Summary)">11.2.4 Total WinLoss (Summary)</a></li>
+                            <li><a target="right_frame" href="reports/betlist/afb2_sports_bet.php" style="margin-top:0" title="Bet List">11.3 Bet List</a></li>
+			          		<li><a target="right_frame" href="reports/stlist/public_total_page.php?gameid=6" style="margin-top:0" title="Statement">11.4 Statement</a></li>
+			          		<li><a target="right_frame" href="reports/stlistold/afb_sports_total_old.php" style="margin-top:0" title="Statement (old)">11.5 Statement (old)</a></li>
+			          		<li><a target="right_frame" href="reports/tips/gdcasino_tip_total.php" style="margin-top:0" title="Casino Tips">11.6 Casino Tips</a></li>
+			          		<li><a target="right_frame" href="reports/transfer_member.php" style="margin-top:0" title="Transfer List">11.8 Transfer List</a></li>
+			                <li style="display: none"><a target="right_frame" href="reports/afb4_sports_forecast.php" style="margin-top:0" title="AFB2 Forecast">11.9 AFB1188 Forecast</a></li>
+						    <li style="display: none"><a target="right_frame" href="reports/sbo_sports_forecast.php" style="margin-top:0" title="SBO Forecast(SGD)">11.9.2 SBO Forecast</a></li>
+							<li><a target="right_frame" href="reports/afb_sports_check.php" style="margin-top:0" title="AFB Sports Checking">11.10 AFB Sports Checking</a></li>
+			                <li style="display: none"><a target="right_frame" href="reports/buyin_buyout_down.php" style="margin-top:0" title="GP Poker Buy Logs">11.11 GP Poker Buy Logs</a></li>
+			            	<li><a target="right_frame" href="reports/member_checking.php" style="margin-top:0" title="Checking Member Balance">11.12 Checking Member Balance</a></li>
+			            	<li style="display: none"><a target="right_frame" href="reports/sendsms/send_sms.php" style="margin-top:0" title="Send SMS">11.13 Send SMS</a></li>
+			                <li style="display: none"><a target="right_frame" href="reports/game_results.php" title="Game Results">11.14 Game Results</a></li>
+			                <li style="display: none"><a target="right_frame" href="reports/prediction.php" title="Lottery Prediction">11.15 Lottery Prediction</a></li>
+			                <li><a target="right_frame" href="reports/turnover_checking.php" title="Checking Turnover">11.16 Checking Turnover</a></li>
+			                <li><a target="right_frame" href="reports/member_winloss.php" title="P&amp;L Report By Member">11.17 P&amp;L Report By Member</a></li>
+							<li style="display:none"><a target="right_frame" href="reports/buy_freeSpin_list.php" title="Buy FreeSpin List">11.18 Buy FreeSpin List</a></li>
+                        </ul>
+				    </li>
+		            		            
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a13)" title="Onlines"><i class="fa fa-globe"></i><span>12. Onlines</span></a>
+			            <ul id="a13" style="display:none;">
+			                <li style="display:none"><a target="right_frame" href="onlines/members.php" style="margin-top:0" title="Member">12.1 Member</a></li>
+			                			            </ul>
+			        </li>
+		            		            
+		            		            <li class="menu-list">
+			            <a style="cursor:pointer;" onclick="show(a14)" title="Logs"><i class="fa fa-scroll"></i> <span>13. Logs</span></a>
+			            <ul id="a14" style="display:none;">
+			                <li style="display:none"><a target="right_frame" href="logs/logs.php" style="margin-top:0" title="Logs">13.1 Logs</a></li>
+			                <li style="display:none"><a target="right_frame" href="logs/logs_agent.php" style="margin-top:0" title="Agent Logs">13.2 Agent Logs</a></li>
+                            <li style="display:none"><a target="right_frame" href="reports/afb_betlist_changed.php">13.3 AFB Change Result</a></li>
+				    </ul>
+			        </li>
+		                                                        <li class="menu-list" style="display: none;visibility: hidden">
+                            <a style="cursor:pointer;" onclick="show(a15)" title="Logs"><i class="fa fa-hiking"></i> <span>14. Sub Website</span></a>
+                            <ul id="a15" style="display:none;">
+                                <li><a target="right_frame" href="whitelable/whitelabe_list.php" title="Sub Website">14.1 Sub Website</a></li>
+                            </ul>
+                        </li>
+                                                                <li class="menu-list">
+                            <a style="cursor:pointer;" onclick="show(a16)" title="Logs"><i class="fa fa-hiking"></i> <span>15. Domain</span></a>
+                            <ul id="a16" style="display:none;">
+                                <li><a target="right_frame" href="domain/add_cloudflare.php" title="Add CloudFlare">15.1 Add CloudFlare</a></li>
+                                <li><a target="right_frame" href="domain/add_cloudflare_domain.php" title="Add Domain">15.2 Add  Domain</a></li>
+                                <li><a target="right_frame" href="domain/domain_list.php" title="Website Domain">15.3 Website Domain</a></li>
+                            </ul>
+                        </li>
+                    										        </div>
+		    <div id="jplayer0"></div>
+		    <div id="jplayer"></div>
+		    <div id="jplayer1"></div>
+		    <div id="jplayer2"></div>
+		    <div id="jplayer3"></div>
+		    <div id="jplayer_prom" style="width: 0px; height: 0px;"></div>
+		    <div id="jplayer_gift"></div>
+		    <div id="jplayer_affi" style="width: 0px; height: 0px;"><img id="jp_poster_1" style="width: 0px; height: 0px; display: none;"><audio id="jp_audio_1" preload="metadata" src="https://fafa159.icg3838.com/website/mp3/Ring1.mp3"></audio></div>
+            <div id="jplayer_kyc"></div>
+                	</div>
+    	
+    	<!-- Right Frame -->
+    	<iframe src="right_frame.php" name="right_frame" scrolling="auto" noresize="noresize" id="right_frame" title="right_frame" frameborder="0"></iframe>
+	</div></div>
+
+
+
+
+
+
+
+
+
+	
